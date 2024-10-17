@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        h1 {
+            margin-bottom: 30px;
+            color: #333;
+        }
+        .trip-row {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .price-bar {
+            background-color: #007bff;
+            height: 20px;
+            border-radius: 5px;
+            text-align: right;
+            color: white;
+            padding-right: 10px;
+            line-height: 20px;
+        }
+        .price-container {
+            background: #e9ecef;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Available Trips</h1>
+        {% for trip in trips %}
+        <div class="trip-row">
+            <div class="row">
+                <div class="col-md-2"><strong>ID:</strong> {{ trip.id }}</div>
+                <div class="col-md-3"><strong>Origin:</strong> {{ trip.origin }}</div>
+                <div class="col-md-3"><strong>Destination:</strong> {{ trip.destination }}</div>
+                <div class="col-md-2"><strong>Nights:</strong> {{ trip.nights }}</div>
+                <div class="col-md-2"><strong>Price (EUR):</strong> {{ trip.price }}</div>
+            </div>
+            <div class="price-container mt-2">
+                <div class="price-bar" style="width: {{ trip.price }}%;">{{ trip.price }} EUR</div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="trip-row">
+            <p>No trips available.</p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

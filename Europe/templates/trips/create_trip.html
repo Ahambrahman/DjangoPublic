@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Trip</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        h1 {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Create New Trip</h1>
+        <form action="{% url 'create_trip' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="origin">Origin</label>
+                <input type="text" class="form-control" id="origin" name="origin" required>
+            </div>
+            <div class="form-group">
+                <label for="destination">Destination</label>
+                <input type="text" class="form-control" id="destination" name="destination" required>
+            </div>
+            <div class="form-group">
+                <label for="nights">Nights</label>
+                <input type="number" class="form-control" id="nights" name="nights" required min="1">
+            </div>
+            <div class="form-group">
+                <label for="price">Price (EUR)</label>
+                <input type="number" step="0.01" class="form-control" id="price" name="price" required min="0">
+            </div>
+            <button type="submit" class="btn btn-primary">Create Trip</button>
+        </form>
+    </div>
+</body>
+</html>
